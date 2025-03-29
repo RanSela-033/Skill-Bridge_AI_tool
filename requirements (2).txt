@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+spacy
+gensim
+sentence-transformers
+pinecone-client
+cohere
+selenium
+beautifulsoup4
+jupyter
