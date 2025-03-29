@@ -9,14 +9,14 @@ Bridging the gap between job seekers and the AI tools that connect them to oppor
 
 ## 📖 Table of Contents
 
-• [🔭 Vision](#-vision)  
-• [🏗️ Approach](#️-approach)  
-• [🌟 Features](#-features)  
-• [🧠 Core Components](#-core-components)  
-• [🚀 Installation](#-installation)  
-• [💻 Usage](#-usage)  
-• [📦 Requirements](#-requirements)  
-• [📄 License](#-license)  
+• [🔭 Vision](#-vision) 
+• [🏗️ Approach](#️-approach) 
+• [🌟 Features](#-features) 
+• [🧠 Core Components](#-core-components)
+• [🚀 Installation](#-installation) 
+• [💻 Usage](#-usage)
+• [📦 Requirements](#-requirements)
+• [📄 License](#-license)
 • [👥 Authors](#-authors)
 
 ## 🔭 Vision
