@@ -7,8 +7,18 @@
 
 Bridging the gap between job seekers and the AI tools that connect them to opportunity.
 
-## 📖 Table of Contents
 
+
+
+
+
+
+<img width="986" alt="צילום מסך 2025-03-29 ב-23 03 35" src="https://github.com/user-attachments/assets/0988380b-9b1c-4971-97ee-940d11714f31" />
+
+
+
+## 📖 Table of Contents
+• [  poster](#-poster) 
 • [🔭 Vision](#-vision) 
 • [🏗️ Approach](#️-approach) 
 • [🌟 Features](#-features) 
@@ -18,6 +28,7 @@ Bridging the gap between job seekers and the AI tools that connect them to oppor
 • [📦 Requirements](#-requirements)
 • [📄 License](#-license)
 • [👥 Authors](#-authors)
+
 
 ## 🔭 Vision
 
