@@ -1,7 +1,7 @@
 # Skill-Bridge_AI_tool
 
 <p align="center">
-  <img src="assets/logo.png" alt="Skill-Bridge Logo" width="200"/>
+  <img src="Assets/logo.png" alt="Skill-Bridge Logo" width="200"/>
 </p>
 
 	⁠Bridging the gap between human expertise and AI capabilities
