@@ -14,9 +14,9 @@
 •⁠  ⁠[Core Functions](#core-functions)
 •⁠  ⁠[Installation](#installation)
 •⁠  ⁠[Usage](#usage)
-•⁠  ⁠[API Reference](#api-reference)
-•⁠  ⁠[Contributing](#contributing)
+•⁠  ⁠[Requirements](requirements)
 •⁠  ⁠[License](#license)
+•⁠  ⁠[Authors](#authors)
 
 ## 🔭 Vision
 
@@ -33,194 +33,74 @@ We believe AI should be an extension of human capability rather than a replaceme
 
 Skill-Bridge employs a multi-layered architecture that transforms human knowledge into executable AI skills:
 
-### Knowledge Representation Layer
+### 🔹 Skill Identification (NER)
+- Extracts skills from job listings using a custom-trained Named Entity Recognition model based on SpaCy.
+- Embedding techniques include Word2Vec and GloVe.
+- Evaluated with IoU, semantic similarity, and precision.
 
-We use a flexible schema that captures the essence of human expertise, including:
-
-•⁠  ⁠Procedural knowledge (step-by-step processes)
-•⁠  ⁠Declarative knowledge (facts and relationships)
+### 🔹 Course Recommendation (RAG)
+- Uses a Retrieval-Augmented Generation pipeline powered by sentence-transformers, Pinecone, and Cohere.
+- Retrieves online courses to fill skill gaps based on similarity with job and user profile embeddings.
+- Requires API keys for Pinecone and Cohere.
 •⁠  ⁠Contextual understanding (when and how to apply skills)
-
-### Skill Definition Framework
-
-Skills are defined through a combination of:
-
-•⁠  ⁠Natural language instructions
-•⁠  ⁠Parameter specifications
-•⁠  ⁠Example inputs and outputs
-•⁠  ⁠Validation rules
-•⁠  ⁠Feedback mechanisms
-
-### Execution Engine
-
-Our execution engine:
-
-•⁠  ⁠Interprets skill definitions
-•⁠  ⁠Dynamically selects appropriate AI models
-•⁠  ⁠Manages context and state
-•⁠  ⁠Provides explainable outputs
-•⁠  ⁠Captures performance metrics
-
-### Learning System
-
-Skills improve over time through:
-
-•⁠  ⁠User feedback integration
-•⁠  ⁠Automatic performance analysis
-•⁠  ⁠Cross-skill knowledge transfer
-•⁠  ⁠Version control for skill evolution
 
 ## 🌟 Features
 
-•⁠  ⁠*Skill Creation UI*: Intuitive interface for defining new AI skills
-•⁠  ⁠*Skill Library*: Organized repository of reusable skills
-•⁠  ⁠*Skill Execution*: Run skills with custom inputs and review outputs
-•⁠  ⁠*Skill Sharing*: Publish and subscribe to skills from other users
-•⁠  ⁠*Skill Analytics*: Track usage patterns and performance metrics
-•⁠  ⁠*Skill Enhancement*: Iteratively improve skills based on feedback
-•⁠  ⁠*Integration Options*: Connect skills to existing workflows and tools
+• Skill extraction from job descriptions  
+• Compatibility scoring between users and jobs  
+• Personalized course recommendations  
+• Glassdoor job scraping for real-world data  
+• Visual performance analysis  
+• Modular Jupyter Notebooks for easy experimentation
 
-## 🧠 Core Functions
+## 🧠 Core Components
 
-### Skill Management
+### 📘 AI_Architectures/NER_model.ipynb
+- Trains a custom NER model using annotated job descriptions.
+- Evaluates multiple embedding methods.
+- Can also load pre-trained models for evaluation and inference.
 
-#### ⁠ createSkill(definition) ⁠
+### 📘 AI_Architectures/RAG_architecture.ipynb
+- Embeds course data and creates a Pinecone index.
+- Queries the vector database to find relevant courses for a job-user pair.
+- Evaluates recommendation quality based on skill compatibility improvement.
+- **Note:** API keys must be added manually for Pinecone and Cohere.
 
-Creates a new skill from the provided definition.
+### 📘 Scraping_Data/scraping_jobs_info.ipynb
+- Scrapes over 17,000 job listings from Glassdoor using Selenium and BeautifulSoup.
+- Collects jobs by querying 3,000 random companies from a dataset.
+- Data used for fine-tuning the NER model.
 
-⁠ javascript
-const weatherAdvisorSkill = await skillBridge.createSkill({
-  name: "Weather Advisor",
-  description: "Recommends clothing based on weather forecast",
-  parameters: {
-    location: "string",
-    activityType: "string"
-  },
-  examples: [
-    {
-      input: { location: "Boston", activityType: "running" },
-      output: "Light jacket recommended. Current temperature is 58°F with light drizzle expected in the afternoon."
-    }
-  ]
-});
- ⁠
+### 📘 Data_Preprocessing/Users Preprocessing.ipynb
+- Consolidates user experience data into a clean, textual format for analysis.
 
-#### ⁠ updateSkill(skillId, updates) ⁠
-
-Updates an existing skill with new properties or behaviors.
-
-#### ⁠ archiveSkill(skillId) ⁠
-
-Archives a skill to keep the library organized while preserving history.
-
-#### ⁠ listSkills(filters) ⁠
-
-Returns a list of available skills matching the specified filters.
-
-### Skill Execution
-
-#### ⁠ executeSkill(skillId, inputs) ⁠
-
-Runs a skill with the provided inputs and returns results.
-
-⁠ javascript
-const recommendation = await skillBridge.executeSkill("weather-advisor", {
-  location: "Seattle",
-  activityType: "hiking"
-});
-
-console.log(recommendation);
-// Output: "Waterproof jacket highly recommended. Forecast shows 80% chance of rain with temperatures around 52°F."
- ⁠
-
-#### ⁠ batchExecute(skillId, inputsList) ⁠
-
-Executes a skill multiple times with different inputs.
-
-#### ⁠ streamExecute(skillId, inputs, callback) ⁠
-
-Executes a skill with streaming results for real-time applications.
-
-### Skill Learning
-
-#### ⁠ provideFeedback(executionId, feedback) ⁠
-
-Submits feedback for a specific skill execution to improve future results.
-
-⁠ javascript
-await skillBridge.provideFeedback("exec_789", {
-  accuracy: 4,
-  relevance: 5,
-  corrections: {
-    temperatureUnit: "Should use Celsius instead of Fahrenheit based on user location"
-  }
-});
- ⁠
-
-#### ⁠ analyzeSkillPerformance(skillId) ⁠
-
-Generates a report on skill performance, highlighting strengths and improvement areas.
-
-### Integration
-
-#### ⁠ exportSkill(skillId, format) ⁠
-
-Exports a skill definition for use in other systems.
-
-#### ⁠ importSkill(definition) ⁠
-
-Imports a skill from an external source.
-
-#### ⁠ createWebhook(skillId, endpointUrl) ⁠
-
-Sets up a webhook to trigger when skill execution completes.
+### 📘 Data Analytics/Data Analytics.ipynb
+- Provides visual and statistical evaluations before model training.
 
 ## 🚀 Installation
 
-⁠ bash
-npm install @skill-bridge/core
- ⁠
-
-Or using yarn:
-
-⁠ bash
-yarn add @skill-bridge/core
- ⁠
+```bash
+git clone https://github.com/RanSela-033/Skill-Bridge_AI_tool.git
+cd Skill-Bridge_AI_tool
+pip install -r requirements.txt
+```
 
 ## 💻 Usage
 
-⁠ javascript
-import { SkillBridge } from '@skill-bridge/core';
+Run the notebooks in this order:
 
-// Initialize with your API key
-const skillBridge = new SkillBridge({
-  apiKey: process.env.SKILL_BRIDGE_API_KEY,
-  environment: 'production'
-});
+1. `Scraping_Data/scraping_jobs_info.ipynb`
+2. `Data_Preprocessing/Users Preprocessing.ipynb`
+3. `AI_Architectures/NER_model.ipynb`
+4. `AI_Architectures/RAG_architecture.ipynb`
+5. `Data Analytics/Data Analytics.ipynb`
 
-// Create and execute a skill
-async function quickStart() {
-  // Create or select a skill
-  const summarizer = await skillBridge.getSkill("document-summarizer");
-  
-  // Execute the skill
-  const summary = await summarizer.execute({
-    document: "Long document content...",
-    maxLength: 200
-  });
-  
-  return summary;
-}
- ⁠
+## 📦 Requirements
 
-## 📚 API Reference
+See `requirements.txt` for a full list of required packages.
 
-Comprehensive API documentation is available at [https://docs.skill-bridge.ai/api](https://docs.skill-bridge.ai/api)
 
-## 🤝 Contributing
+## 👥 Authors
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and suggest features.
-
-## 📄 License
-
-Skill-Bridge AI Tool is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Bar Muller, Bar Redel, Ran Sela  
+Technion – Israel Institute of Technology
